@@ -1,0 +1,99 @@
+<div>
+  <md-toolbar layout class="md-hue-2">
+     <div class="md-toolbar-tools">
+       <h2>
+         <span>Welcome to your TodoApp</span>
+       </h2>
+       <span flex></span>
+       <md-button ng-click="logout()" layout layout-align="center center">
+         <span>Logout</span>
+         <i class="material-icons">power_settings_new</i>
+       </md-button>
+     </div>
+   </md-toolbar>
+   <div class="todoLists background-gray" layout layout-align="center">
+     <md-content class="background-gray" flex="70" layout-padding layout-wrap>
+       <div layout>
+         <h2 flex="45"class="yourTodoLists" flex>Your Todo Lists</h2>
+         <!-- NAPRAVI SELECTION ZA SORTING  -->
+         <span flex></span>
+         <div flex="30">
+           <md-input-container>
+             <label>Sort by</label>
+             <md-select ng-model="sortBy"> <!--md-on-close: expression; multiple:boolean; placeholder: string;-->
+                 <!-- <md-select-label>Select a state</md-select-label> -->
+                 <md-option ng-value="opt" ng-repeat="opt in sortOptions">{{ opt.name }}</md-option>
+             </md-select>
+           </md-input-container>
+         </div>
+       </div>
+
+       <md-button class="md-fab md-fab-bottom-right" ng-click="openListDialog()">
+         <md-tooltip md-direction="bottom">
+           Add new list
+         </md-tooltip>
+         <i class="material-icons">add</i>
+       </md-button>
+
+       <div layout layout-align="center" ng-repeat="list in lists | orderBy: sortBy.sort">
+         <md-card flex="75">
+           <md-card-content>
+             <div layout>
+               <h2>{{list.name}} <small class="listDate">| Created: {{list.createdOn | date: 'MMM dd, y - h:mma'}}</small></h2>
+               <span flex></span>
+               <md-button class="md-primary" ng-click="addTaskDialog(list.id)">Add Task</md-button>
+               <md-button class="md-warn" ng-click="remove(list)">Delete List</md-button>
+             </div>
+
+             <div ng-if="(tasks | filter: {listId: list.id}).length !== 0">
+               <hr>
+               <md-table-container>
+                 <table md-table md-row-select>
+                  <thead md-head md-order="query.order">
+                    <tr md-row>
+                      <th md-column md-order-by="name" ng-click="orderTasks('name')"><span>Name</span></th>
+                      <th md-column md-order-by="priority" ng-click="orderTasks('priority')"><span>Priority</span></th>
+                      <th md-column md-order-by="dueTo" ng-click="orderTasks('dueTo')">Due to</th>
+                      <th md-column md-order-by="status" ng-click="orderTasks('status')">Status</th>
+                      <!-- <th md-column md-numeric>Days left</th> -->
+                      <th md-column>Days left</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody md-body>
+                    <tr md-row ng-repeat="task in tasks | filter: {listId: list.id} | orderBy: taskOrder">
+                      <td md-cell>{{task.name}}</td>
+                      <td md-cell>{{task.priority}}</td>
+                      <td md-cell>{{task.dueTo | date: 'MMM dd, y'}}</td>
+                      <td md-cell>{{task.status}}</td>
+                      <td md-cell>{{(task.dueTo - currentDate) / (1000 * 3600 * 24)}}</td>
+                      <td>
+                        <md-button class="md-icon-button md-accent" ng-click="editTask(task)">
+                          <md-tooltip md-direction="bottom">
+                            Edit task
+                          </md-tooltip>
+                          <i class="material-icons">mode_edit</i>
+                        </md-button>
+                      </td>
+                      <td>
+                        <md-button class="md-icon-button md-accent" ng-click="removeTask(task)">
+                          <md-tooltip md-direction="bottom">
+                            Delete task
+                          </md-tooltip>
+                          <i class="material-icons">delete</i>
+                        </md-button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+               </md-table-container>
+             </div>
+
+           </md-card-content>
+         </md-card>
+       </div>
+
+     </md-content>
+   </div>
+</div>

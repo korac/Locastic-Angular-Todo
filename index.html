@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Locastic Todo</title>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="./bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="./bower_components/angular-material/angular-material.min.js"></script>
+    <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <script src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script src="./bower_components/ngstorage/ngStorage.min.js"></script>
+    <script src="./bower_components/moment/min/moment.min.js"></script>
+    <script src="./bower_components/underscore/underscore-min.js"></script>
+  </head>
+  <body ng-app="TodoApp" class="md-background">
+    <!-- <md-content>
+      <md-button class="md-accent">Click me</md-button>
+      <md-button class="md-warn">Click me</md-button>
+      <md-button class="md-primary md-hue-2">Click me</md-button>
+    </md-content> -->
+    <div class="background" ng-controller="BackgroundController">
+      <div layout layout-align="center" class="registrationThanks" ng-if="registrationThanks" ng-cloak>
+        <div flex="30" layout layout-padding layout-align="center center">
+          <div flex layout layout-align="center">
+            Thanks for your registration!
+          </div>
+          <div layout layout-align="center" ng-click="disbandThanks()">
+            <i class="material-icons">highlight_off</i>
+          </div>
+        </div>
+      </div>
+      <ng-view></ng-view>
+    </div>
+
+    <!-- http://jasonwatmore.com/post/2015/03/10/AngularJS-User-Registration-and-Login-Example.aspx
+    http://jasonwatmore.com/post/2014/05/26/AngularJS-Basic-HTTP-Authentication-Example.aspx
+    http://todomvc.com/examples/angularjs/#/
+    https://codepen.io/Russbrown/pen/IgBuh?editors=1010 -->
+
+
+    <script src="./js/app.js"></script>
+    <script src="./js/controllers/BackgroundController.js"></script>
+    <script src="./js/controllers/LoginController.js"></script>
+    <script src="./js/controllers/RegisterController.js"></script>
+    <script src="./js/controllers/DashboardController.js"></script>
+    <script src="./js/controllers/DialogController.js"></script>
+    <script src="./js/services/registerService.js"></script>
+    <script src="./js/services/authenticationService.js"></script>
+    <script src="./js/services/newListDialog.js"></script>
+    <script src="./js/services/addTaskDialog.js"></script>
+    <script src="./js/services/listService.js"></script>
+    <script src="./js/services/taskService.js"></script>
+  </body>
+</html>

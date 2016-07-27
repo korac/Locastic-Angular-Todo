@@ -1,0 +1,21 @@
+  <div class="background" layout="row" layout-align="space-around center">
+  <md-card flex="30">
+    <md-card-content>
+      <h2>Login</h2>
+      <form name="loginForm" ng-submit="loginForm.$valid && login(user)" novalidate>
+        <md-input-container class="md-block">
+          <label>Username</label>
+          <input type="email" ng-model="user.email" required>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Password</label>
+          <input type="password" ng-model="user.password" required>
+        </md-input-container>
+        <div layout layout-align="end center">
+          <md-button class="md-primary" type="submit">Login</md-button>
+          <md-button class="md-accent" ng-click="toRegister()">Not registered?</md-button>
+        </div>
+      </form>
+    </md-card-content>
+  </md-card>
+</div>

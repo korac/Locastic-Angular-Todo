@@ -1,0 +1,35 @@
+<md-dialog class="addTaskDialog" aria-label="" ng-cloak>
+    <dialog-header layout layout-padding>
+      <h3 class="dialogTitle">Add new task</h3>
+    </dialog-header>
+    <md-dialog-content class="md-dialog-content">
+      <form name="dialogForm" ng-submit="dialogForm.$valid && editTask(task)" novalidate>
+        <legend></legend>
+        <div layout="column">
+          <md-input-container>
+            <label>Task Name</label>
+            <input type="text" ng-model="task.name" required>
+          </md-input-container>
+          <md-input-container flex="30">
+            <label>Priority</label>
+            <md-select ng-model="task.priority" required>
+                <md-option ng-value="opt" ng-repeat="opt in priorities">{{ opt }}</md-option>
+            </md-select>
+          </md-input-container>
+          <div class="">
+              <h4>Due to</h4>
+              <md-datepicker ng-model="task.dueTo" md-placeholder="Enter date" md-min-date="minDate" required></md-datepicker>
+          </div>
+          <md-input-container class="md-block">
+            <label>Status</label>
+            <md-select ng-model="task.taskStatus" required>
+                <md-option ng-value="opt" ng-repeat="opt in taskStatuses">{{ opt }}</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <div layout layout-align="end center">
+          <md-button class="md-primary" type="submit">Create Task</md-button>
+        </div>
+      </form>
+    </md-dialog-content>
+</md-dialog>

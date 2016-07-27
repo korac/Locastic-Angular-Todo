@@ -1,0 +1,17 @@
+<md-dialog class="newListDialog" aria-label="" ng-cloak>
+    <dialog-header layout layout-padding>
+      <h3 class="dialogTitle">New List</h3>
+    </dialog-header>
+    <md-dialog-content class="md-dialog-content">
+      <form name="dialogForm" ng-submit="dialogForm.$valid && addList(list)" novalidate>
+        <legend></legend>
+        <md-input-container class="md-block">
+          <label>List Name</label>
+          <input type="text" ng-model="list.name" required>
+        </md-input-container>
+        <div layout layout-align="end center">
+          <md-button class="md-primary" type="submit">Create List</md-button>
+        </div>
+      </form>
+    </md-dialog-content>
+</md-dialog>

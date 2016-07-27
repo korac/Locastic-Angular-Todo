@@ -1,0 +1,25 @@
+{
+  "name": "todo",
+  "authors": [
+    "korac <korac.kristijan@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "^2.14.1",
+    "angular-material": "^1.0.9",
+    "angular-route": "^1.5.7",
+    "underscore": "^1.8.3",
+    "ngstorage": "^0.3.10",
+    "angular-material-data-table": "^0.10.9"
+  }
+}
