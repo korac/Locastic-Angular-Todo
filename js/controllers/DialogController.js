@@ -1,7 +1,10 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').controller('DialogController', DialogController);
+  angular
+      .module('TodoApp')
+      .controller('DialogController', DialogController)
+      .controller('TaskDialogController', TaskDialogController);
 
   function DialogController($scope, $mdDialog, $timeout, ListService){
 
@@ -14,8 +17,6 @@
   }
 
   //Razmisti ga u posebni file
-  angular.module('TodoApp').controller('TaskDialogController', TaskDialogController);
-
   function TaskDialogController($scope, $mdDialog, $timeout){
 
     $scope.addTask = function(task){
