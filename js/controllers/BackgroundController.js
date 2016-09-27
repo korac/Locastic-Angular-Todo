@@ -5,6 +5,8 @@
       .module('TodoApp')
       .controller('BackgroundController', BackgroundController);
 
+  BackgroundController.$inject = ['$scope', '$rootScope', '$timeout'];
+
   function BackgroundController($scope, $rootScope, $timeout){
 
     $scope.registrationThanks = false;

@@ -5,6 +5,8 @@
       .module('TodoApp')
       .controller('RegisterController', RegisterController);
 
+  RegisterController.$inject = ['$scope', '$location', 'RegisterService'];
+
   function RegisterController($scope, $location, RegisterService){
 
     $scope.register = function(user){

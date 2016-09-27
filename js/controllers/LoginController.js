@@ -5,6 +5,8 @@
       .module('TodoApp')
       .controller('LoginController', LoginController);
 
+  LoginController.$inject = ['$scope', 'AuthenticationService', '$location', '$window'];
+
   function LoginController($scope, AuthenticationService, $location, $window){
 
     AuthenticationService.ClearCredentials();

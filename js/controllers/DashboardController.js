@@ -5,7 +5,10 @@
       .module('TodoApp')
       .controller('DashboardController', DashboardController);
 
+  DashboardController.$inject = ['$scope', '$routeParams', 'AuthenticationService', '$location', '$window', 'NewListDialog', 'AddTaskDialog', 'ListService', 'TaskService', '$localStorage'];
+
   function DashboardController($scope, $routeParams, AuthenticationService, $location, $window, NewListDialog, AddTaskDialog, ListService, TaskService, $localStorage){
+    var vm = this;
 
     $scope.id = $routeParams.id;
     $scope.sortOptions = [

@@ -6,6 +6,8 @@
       .controller('DialogController', DialogController)
       .controller('TaskDialogController', TaskDialogController);
 
+  DialogController.$inject = ['$scope', '$mdDialog', '$timeout', 'ListService'];
+
   function DialogController($scope, $mdDialog, $timeout, ListService){
 
     $scope.addList = function(list){
