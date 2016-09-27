@@ -3,11 +3,11 @@
       <h3 class="dialogTitle">New List</h3>
     </dialog-header>
     <md-dialog-content class="md-dialog-content">
-      <form name="dialogForm" ng-submit="dialogForm.$valid && dialog.addList()" novalidate>
+      <form name="dialogForm" ng-submit="dialogForm.$valid && vm.addList()" novalidate>
         <legend></legend>
         <md-input-container class="md-block">
           <label>List Name</label>
-          <input type="text" ng-model="dialog.list.name" required>
+          <input type="text" ng-model="vm.list.name" required>
         </md-input-container>
         <div layout layout-align="end center">
           <md-button class="md-primary" type="submit">Create List</md-button>

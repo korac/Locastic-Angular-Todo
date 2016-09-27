@@ -11,7 +11,7 @@
       return $mdDialog.show({
                 templateUrl: './js/templates/newListDialog.html',
                 controller: 'DialogController',
-                controllerAs: 'dialog',
+                controllerAs: 'vm',
                 clickOutsideToClose:true,
                 fullscreen: false
             })

@@ -14,17 +14,17 @@
         .when('/login', {
           templateUrl: './js/templates/login.html',
           controller: 'LoginController',
-          controllerAs: 'login'
+          controllerAs: 'vm'
         })
         .when('/register', {
           templateUrl: './js/templates/register.html',
           controller: 'RegisterController',
-          controllerAs: 'register'
+          controllerAs: 'vm'
         })
         .when('/:id/dashboard', {
           templateUrl: './js/templates/dashboard.html',
           controller: 'DashboardController',
-          controllerAs: 'dashboard'
+          controllerAs: 'vm'
         })
         .otherwise({ redirectTo: '/login'});
 

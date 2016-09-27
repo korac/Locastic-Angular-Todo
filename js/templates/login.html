@@ -2,18 +2,18 @@
   <md-card flex="30">
     <md-card-content>
       <h2>Login</h2>
-      <form name="loginForm" ng-submit="loginForm.$valid && login.login()" novalidate>
+      <form name="loginForm" ng-submit="loginForm.$valid && vm.login()" novalidate>
         <md-input-container class="md-block">
           <label>Username</label>
-          <input type="email" ng-model="login.user.email" required>
+          <input type="email" ng-model="vm.user.email" required>
         </md-input-container>
         <md-input-container class="md-block">
           <label>Password</label>
-          <input type="password" ng-model="login.user.password" required>
+          <input type="password" ng-model="vm.user.password" required>
         </md-input-container>
         <div layout layout-align="end center">
           <md-button class="md-primary" type="submit">Login</md-button>
-          <md-button class="md-accent" ng-click="login.toRegister()">Not registered?</md-button>
+          <md-button class="md-accent" ng-click="vm.toRegister()">Not registered?</md-button>
         </div>
       </form>
     </md-card-content>
