@@ -1,17 +1,19 @@
-'use strict'
+(function(){
+  'use strict'
 
-angular.module('TodoApp').controller('BackgroundController', function($scope, $rootScope, $timeout){
-  $scope.registrationThanks = false;
-
-  $scope.disbandThanks = function(){
+  angular.module('TodoApp').controller('BackgroundController', function($scope, $rootScope, $timeout){
     $scope.registrationThanks = false;
-  }
 
-  $rootScope.showThanks = function(){
-    $scope.registrationThanks = true;
-
-    $timeout(function(){
+    $scope.disbandThanks = function(){
       $scope.registrationThanks = false;
-    }, 3000);
-  }
-});
+    }
+
+    $rootScope.showThanks = function(){
+      $scope.registrationThanks = true;
+
+      $timeout(function(){
+        $scope.registrationThanks = false;
+      }, 3000);
+    }
+  });
+})();
