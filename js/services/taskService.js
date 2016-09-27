@@ -1,15 +1,13 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').service('TaskService', function($routeParams, $localStorage){
-    var userId = $routeParams.id;
+  angular
+      .module('TodoApp')
+      .service('TaskService', TaskService);
 
-    // this.getList = function(userId, listId){
-    //   var allLists = getAllLists();
-    //   var wantedList = _.find(allLists, function(item){ return item.id === listId})
-    //
-    //   return wantedList;
-    // }
+  function TaskService($routeParams, $localStorage){
+
+    var userId = $routeParams.id;
 
     this.addTask = function(task, id){
       var allTasks = this.getAllTasks();
@@ -50,7 +48,6 @@
         allTasks = _.without(allTasks, _.findWhere(allTasks, { id: task.id}))
         console.log("postojim vec");
         taskId = task.id;
-        // console.log(alreadyExists);
       }
 
       var taskToAdd = {
@@ -76,5 +73,6 @@
       $localStorage.tasks = tasks;
       // $window.localStorage.setItem('lists', JSON.stringify(lists));
     }
-  })
+    
+  }
 })();

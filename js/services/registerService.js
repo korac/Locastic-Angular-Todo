@@ -1,9 +1,13 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').service('RegisterService', function($window, $location, $rootScope){
+  angular
+      .module('TodoApp')
+      .service('RegisterService', RegisterService);
 
-    //Some accounts
+  function RegisterService($window, $location, $rootScope){
+
+    //Default accounts
     var usersArray = [
       {
         id: 0,
@@ -75,5 +79,5 @@
 
       // console.log("Registracija!");
     }
-  });
+  }
 })();

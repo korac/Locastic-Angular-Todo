@@ -1,7 +1,12 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').service('NewListDialog', function($mdDialog){
+  angular
+      .module('TodoApp')
+      .service('NewListDialog', NewListDialog);
+
+  function NewListDialog($mdDialog){
+    
     this.show = function(){
       return $mdDialog.show({
                 // controller: ['$scope', '$timeout', function($scope, $timeout){
@@ -20,5 +25,5 @@
                 // scope: scope.$new()
             })
     }
-  });
+  }
 })();

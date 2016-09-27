@@ -1,7 +1,12 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').service('ListService', function($routeParams, $localStorage, TaskService){
+  angular
+      .module('TodoApp')
+      .service('ListService', ListService);
+
+  function ListService($routeParams, $localStorage, TaskService){
+    
     var userId = $routeParams.id;
 
     // this.getList = function(userId, listId){
@@ -52,5 +57,5 @@
       $localStorage.lists = lists;
       // $window.localStorage.setItem('lists', JSON.stringify(lists));
     }
-  });
+  }
 })();

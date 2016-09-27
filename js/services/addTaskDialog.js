@@ -1,7 +1,11 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').service('AddTaskDialog', function($mdDialog){
+  angular
+      .module('TodoApp')
+      .service('AddTaskDialog', AddTaskDialog);
+
+  function AddTaskDialog($mdDialog){
     this.show = function(id){
       return $mdDialog.show({
                 controller: ['$scope', '$timeout', 'TaskService', function($scope, $timeout, TaskService){
@@ -61,5 +65,5 @@
                 // scope: scope.$new()
             })
     }
-  });
+  }
 })();

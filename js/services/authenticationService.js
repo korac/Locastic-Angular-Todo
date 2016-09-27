@@ -1,7 +1,12 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').factory('AuthenticationService', function($http, $cookies, Base64, $rootScope, $window){
+  angular
+      .module('TodoApp')
+      .factory('AuthenticationService', AuthenticationService)
+      .factory('Base64', Base64);
+
+  function AuthenticationService($http, $cookies, Base64, $rootScope, $window){
     var service = {};
 
     service.Login = function(username, password, callback){
@@ -39,9 +44,9 @@
     }
 
     return service;
-  })
-  .factory('Base64', function () {
-      /* jshint ignore:start */
+  }
+
+  function Base64() {
 
       var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
@@ -122,5 +127,5 @@
               return output;
           }
       };
-    });
+  }
 })();
