@@ -1,7 +1,12 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').controller('BackgroundController', function($scope, $rootScope, $timeout){
+  angular
+      .module('TodoApp')
+      .controller('BackgroundController', BackgroundController);
+
+  function BackgroundController($scope, $rootScope, $timeout){
+
     $scope.registrationThanks = false;
 
     $scope.disbandThanks = function(){
@@ -15,5 +20,5 @@
         $scope.registrationThanks = false;
       }, 3000);
     }
-  });
+  }
 })();

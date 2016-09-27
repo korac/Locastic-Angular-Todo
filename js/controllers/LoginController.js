@@ -1,7 +1,11 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').controller('LoginController', function($scope, AuthenticationService, $location, $window){
+  angular
+      .module('TodoApp')
+      .controller('LoginController', LoginController);
+
+  function LoginController($scope, AuthenticationService, $location, $window){
 
     AuthenticationService.ClearCredentials();
     $scope.login = function(user){
@@ -30,5 +34,5 @@
     $scope.toRegister = function(){
       $location.path('/register');
     }
-  })
+  }
 })();

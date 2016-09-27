@@ -1,9 +1,13 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').controller('DashboardController', function($scope, $routeParams, AuthenticationService, $location, $window, NewListDialog, AddTaskDialog, ListService, TaskService, $localStorage){
-    $scope.id = $routeParams.id;
+  angular
+      .module('TodoApp')
+      .controller('DashboardController', DashboardController);
 
+  function DashboardController($scope, $routeParams, AuthenticationService, $location, $window, NewListDialog, AddTaskDialog, ListService, TaskService, $localStorage){
+
+    $scope.id = $routeParams.id;
     $scope.sortOptions = [
       {name: "Date of creation", sort: "createdOn"},
       {name: "List name", sort: "name"}
@@ -58,13 +62,12 @@
       $scope.tasks = _.filter($localStorage.tasks, function(item){return item.userId === $scope.id});
       $scope.lists = _.filter($localStorage.lists, function(item){return item.userId === $scope.id});
     });
+
     // $scope.$watch('lists', function(newLists, oldLists){
     //   console.log("RADI UPDATE");
     //   console.log(newLists);
     //   $localStorage.lists = $scope.lists;
     // })
 
-
-
-  });
+  }
 })();

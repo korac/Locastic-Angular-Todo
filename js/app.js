@@ -1,7 +1,13 @@
 (function(){
   'use strict'
 
-  var app = angular.module("TodoApp", ['ngMaterial', 'ngRoute', 'ngCookies', 'ngStorage', 'md.data.table']);
+  var app = angular.module("TodoApp", [
+    'ngMaterial',
+    'ngRoute',
+    'ngCookies',
+    'ngStorage',
+    'md.data.table'
+  ]);
 
   app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider){
     $routeProvider

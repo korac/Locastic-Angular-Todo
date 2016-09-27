@@ -1,7 +1,9 @@
 (function(){
   'use strict'
 
-  angular.module('TodoApp').controller('DialogController', function($scope, $mdDialog, $timeout, ListService){
+  angular.module('TodoApp').controller('DialogController', DialogController);
+
+  function DialogController($scope, $mdDialog, $timeout, ListService){
 
     $scope.addList = function(list){
       ListService.addList(list);
@@ -9,10 +11,13 @@
           $mdDialog.cancel();
       }, 200);
     }
-  });
+  }
 
-  angular.module('TodoApp').controller('TaskDialogController', function($scope, $mdDialog, $timeout){
-    console.log(id);
+  //Razmisti ga u posebni file
+  angular.module('TodoApp').controller('TaskDialogController', TaskDialogController);
+
+  function TaskDialogController($scope, $mdDialog, $timeout){
+
     $scope.addTask = function(task){
       TaskService.addTask(task);
       $timeout(function(){
@@ -26,5 +31,6 @@
 
     $scope.taskStatuses = ["Incomplete", "Complete"];
     $scope.taskStatus = $scope.taskStatuses[0];
-  });
+  }
+
 })();
