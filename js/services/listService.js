@@ -6,28 +6,13 @@
       .service('ListService', ListService);
 
   function ListService($routeParams, $localStorage, TaskService){
-    
+
+    this.addList = addList;
+    this.removeList = removeList;
+
     var userId = $routeParams.id;
 
-    // this.getList = function(userId, listId){
-    //   var allLists = getAllLists();
-    //   var wantedList = _.find(allLists, function(item){ return item.id === listId})
-    //
-    //   return wantedList;
-    // }
-
-    this.removeList = function(list){
-      var allLists = getAllLists();
-      var allTasks = TaskService.getAllTasks();
-
-      var updatedLists = _.without(allLists, _.findWhere(allLists, { id: list.id}));
-      var updatedTasks = _.filter(allTasks, function(task){ return task.listId !== list.id});
-
-      storeAllLists(updatedLists);
-      TaskService.storeAllTasks(updatedTasks);
-    }
-
-    this.addList = function(list){
+    function addList(list){
       var allLists = getAllLists();
       var listId = 0;
 
@@ -46,6 +31,17 @@
 
       allLists.push(listToAdd);
       storeAllLists(allLists);
+    }
+
+    function removeList(list){
+      var allLists = getAllLists();
+      var allTasks = TaskService.getAllTasks();
+
+      var updatedLists = _.without(allLists, _.findWhere(allLists, { id: list.id}));
+      var updatedTasks = _.filter(allTasks, function(task){ return task.listId !== list.id});
+
+      storeAllLists(updatedLists);
+      TaskService.storeAllTasks(updatedTasks);
     }
 
     function getAllLists(){

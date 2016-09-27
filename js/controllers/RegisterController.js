@@ -5,15 +5,19 @@
       .module('TodoApp')
       .controller('RegisterController', RegisterController);
 
-  RegisterController.$inject = ['$scope', '$location', 'RegisterService'];
+  RegisterController.$inject = ['$location', 'RegisterService'];
 
-  function RegisterController($scope, $location, RegisterService){
+  function RegisterController($location, RegisterService){
+    var vm = this;
 
-    $scope.register = function(user){
-      RegisterService.register(user);
+    vm.register = register;
+    vm.toLogin = toLogin;
+
+    function register(){
+      RegisterService.register(vm.user);
     }
 
-    $scope.toLogin = function(){
+    function toLogin(){
       $location.path('/login');
     }
   }

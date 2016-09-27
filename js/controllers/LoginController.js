@@ -8,21 +8,24 @@
   LoginController.$inject = ['$scope', 'AuthenticationService', '$location', '$window'];
 
   function LoginController($scope, AuthenticationService, $location, $window){
+    var vm = this;
 
-    AuthenticationService.ClearCredentials();
-    $scope.login = function(user){
+    vm.login = login;
+    vm.toRegister = toRegister;
+    vm.user = {user: "", password: ""};
+
+    AuthenticationService.clearCredentials();
+
+    function login(){
       $scope.dataLoading = true;
-      AuthenticationService.Login(user.email, user.password, function(response){
+      AuthenticationService.login(vm.user.email, vm.user.password, function(response){
         if(response.success){
-          AuthenticationService.SetCredentials(user.email, user.password);
+          AuthenticationService.setCredentials(vm.user.email, vm.user.password);
           var users = JSON.parse($window.localStorage.getItem("users"));
-          var userLogged = _.find(users, function(item){return item.email === user.email});
+          var userLogged = _.find(users, function(item){return item.email === vm.user.email});
           userLogged.lastLogin = moment().valueOf();
           userLogged.status = "active";
 
-          // var updatedUsers = _.without(users, _.findWhere(users, { email: user.email}));
-          // updatedUsers.push(userLogged);
-          // console.log(updatedUsers);
           $window.localStorage.setItem("users", JSON.stringify(users));
           $location.path('/' + userLogged.id + '/dashboard');
         }else{
@@ -33,7 +36,7 @@
       })
     }
 
-    $scope.toRegister = function(){
+    function toRegister(){
       $location.path('/register');
     }
   }

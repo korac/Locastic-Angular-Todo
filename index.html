@@ -21,13 +21,13 @@
     <script src="./bower_components/underscore/underscore-min.js"></script>
   </head>
   <body ng-app="TodoApp" class="md-background">
-    <div class="background" ng-controller="BackgroundController">
-      <div layout layout-align="center" class="registrationThanks" ng-if="registrationThanks" ng-cloak>
+    <div class="background" ng-controller="BackgroundController as background">
+      <div layout layout-align="center" class="registrationThanks" ng-if="background.registrationThanks" ng-cloak>
         <div flex="30" layout layout-padding layout-align="center center">
           <div flex layout layout-align="center">
             Thanks for your registration!
           </div>
-          <div layout layout-align="center" ng-click="disbandThanks()">
+          <div layout layout-align="center" ng-click="background.disbandThanks()">
             <i class="material-icons">highlight_off</i>
           </div>
         </div>

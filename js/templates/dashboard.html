@@ -5,7 +5,7 @@
          <span>Welcome to your TodoApp</span>
        </h2>
        <span flex></span>
-       <md-button ng-click="logout()" layout layout-align="center center">
+       <md-button ng-click="dashboard.logout()" layout layout-align="center center">
          <span>Logout</span>
          <i class="material-icons">power_settings_new</i>
        </md-button>
@@ -20,41 +20,40 @@
          <div flex="30">
            <md-input-container>
              <label>Sort by</label>
-             <md-select ng-model="sortBy"> <!--md-on-close: expression; multiple:boolean; placeholder: string;-->
-                 <!-- <md-select-label>Select a state</md-select-label> -->
-                 <md-option ng-value="opt" ng-repeat="opt in sortOptions">{{ opt.name }}</md-option>
+             <md-select ng-model="dashboard.sortBy">
+                 <md-option ng-value="opt" ng-repeat="opt in dashboard.sortOptions">{{ opt.name }}</md-option>
              </md-select>
            </md-input-container>
          </div>
        </div>
 
-       <md-button class="md-fab md-fab-bottom-right" ng-click="openListDialog()">
+       <md-button class="md-fab md-fab-bottom-right" ng-click="dashboard.openListDialog()">
          <md-tooltip md-direction="bottom">
            Add new list
          </md-tooltip>
          <i class="material-icons">add</i>
        </md-button>
 
-       <div layout layout-align="center" ng-repeat="list in lists | orderBy: sortBy.sort">
+       <div layout layout-align="center" ng-repeat="list in dashboard.lists | orderBy: dashboard.sortBy.sort">
          <md-card flex="75">
            <md-card-content>
              <div layout>
                <h2>{{list.name}} <small class="listDate">| Created: {{list.createdOn | date: 'MMM dd, y - h:mma'}}</small></h2>
                <span flex></span>
-               <md-button class="md-primary" ng-click="addTaskDialog(list.id)">Add Task</md-button>
-               <md-button class="md-warn" ng-click="remove(list)">Delete List</md-button>
+               <md-button class="md-primary" ng-click="dashboard.addTaskDialog(list.id)">Add Task</md-button>
+               <md-button class="md-warn" ng-click="dashboard.remove(list)">Delete List</md-button>
              </div>
 
-             <div ng-if="(tasks | filter: {listId: list.id}).length !== 0">
+             <div ng-if="(dashboard.tasks | filter: {listId: list.id}).length !== 0">
                <hr>
                <md-table-container>
                  <table md-table md-row-select>
                   <thead md-head md-order="query.order">
                     <tr md-row>
-                      <th md-column md-order-by="name" ng-click="orderTasks('name')"><span>Name</span></th>
-                      <th md-column md-order-by="priority" ng-click="orderTasks('priority')"><span>Priority</span></th>
-                      <th md-column md-order-by="dueTo" ng-click="orderTasks('dueTo')">Due to</th>
-                      <th md-column md-order-by="status" ng-click="orderTasks('status')">Status</th>
+                      <th md-column md-order-by="name" ng-click="dashboard.orderTasks('name')"><span>Name</span></th>
+                      <th md-column md-order-by="priority" ng-click="dashboard.orderTasks('priority')"><span>Priority</span></th>
+                      <th md-column md-order-by="dueTo" ng-click="dashboard.orderTasks('dueTo')">Due to</th>
+                      <th md-column md-order-by="status" ng-click="dashboard.orderTasks('status')">Status</th>
                       <!-- <th md-column md-numeric>Days left</th> -->
                       <th md-column>Days left</th>
                       <th></th>
@@ -62,14 +61,14 @@
                     </tr>
                   </thead>
                   <tbody md-body>
-                    <tr md-row ng-repeat="task in tasks | filter: {listId: list.id} | orderBy: taskOrder">
+                    <tr md-row ng-repeat="task in dashboard.tasks | filter: {listId: list.id} | orderBy: dashboard.taskOrder">
                       <td md-cell>{{task.name}}</td>
                       <td md-cell>{{task.priority}}</td>
                       <td md-cell>{{task.dueTo | date: 'MMM dd, y'}}</td>
                       <td md-cell>{{task.status}}</td>
-                      <td md-cell>{{(task.dueTo - currentDate) / (1000 * 3600 * 24)}}</td>
+                      <td md-cell>{{(task.dueTo - dashboard.currentDate) / (1000 * 3600 * 24)}}</td>
                       <td>
-                        <md-button class="md-icon-button md-accent" ng-click="editTask(task)">
+                        <md-button class="md-icon-button md-accent" ng-click="dashboard.editTask(task)">
                           <md-tooltip md-direction="bottom">
                             Edit task
                           </md-tooltip>
@@ -77,7 +76,7 @@
                         </md-button>
                       </td>
                       <td>
-                        <md-button class="md-icon-button md-accent" ng-click="removeTask(task)">
+                        <md-button class="md-icon-button md-accent" ng-click="dashboard.removeTask(task)">
                           <md-tooltip md-direction="bottom">
                             Delete task
                           </md-tooltip>

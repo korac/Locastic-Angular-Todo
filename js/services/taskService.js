@@ -9,7 +9,13 @@
 
     var userId = $routeParams.id;
 
-    this.addTask = function(task, id){
+    this.addTask = addTask;
+    this.editTask = editTask;
+    this.getAllTasks = getAllTasks;
+    this.removeTask = removeTask;
+    this.storeAllTasks = storeAllTasks;
+
+    function addTask(task, id){
       var allTasks = this.getAllTasks();
       var taskId = 0;
 
@@ -33,13 +39,7 @@
       this.storeAllTasks(allTasks);
     }
 
-    this.removeTask = function(task){
-      var allTasks = this.getAllTasks();
-      var updatedTasks = _.without(allTasks, _.findWhere(allTasks, { id: task.id}));
-      this.storeAllTasks(updatedTasks);
-    }
-
-    this.editTask = function(task){
+    function editTask(task){
       var allTasks = this.getAllTasks();
       var alreadyExists = _.findWhere(allTasks, {id: task.id});
       var taskId;
@@ -64,14 +64,20 @@
       this.storeAllTasks(allTasks);
     }
 
-    this.getAllTasks = function(){
+    function getAllTasks(){
       return $localStorage.tasks;
       // return JSON.parse($window.localStorage.getItem('lists'));
     }
-    //
-    this.storeAllTasks = function(tasks){
+
+    function storeAllTasks(tasks){
       $localStorage.tasks = tasks;
       // $window.localStorage.setItem('lists', JSON.stringify(lists));
+    }
+
+    function removeTask(task){
+      var allTasks = this.getAllTasks();
+      var updatedTasks = _.without(allTasks, _.findWhere(allTasks, { id: task.id}));
+      this.storeAllTasks(updatedTasks);
     }
     
   }

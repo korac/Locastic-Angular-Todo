@@ -7,9 +7,12 @@
       .factory('Base64', Base64);
 
   function AuthenticationService($http, $cookies, Base64, $rootScope, $window){
-    var service = {};
 
-    service.Login = function(username, password, callback){
+    this.login = login;
+    this.clearCredentials = clearCredentials;
+    this.setCredentials = setCredentials;
+
+    function login(username, password, callback){
       var users = JSON.parse($window.localStorage.getItem("users"));
       var response = {};
       var isValid = _.find(users, function(item){ return item.email === username && item.password === password});
@@ -24,7 +27,13 @@
       callback(response);
     };
 
-    service.SetCredentials = function(username, password){
+    function clearCredentials() {
+      $rootScope.globals = {};
+      $cookies.remove('globals');
+      // $http.defaults.headers.common.Authorization = 'Basic ';
+    }
+
+    function setCredentials(username, password){
       var authdata = Base64.encode(username + ':' + password);
       $rootScope.globals = {
         currentUser: {
@@ -37,13 +46,7 @@
       $cookies.put('globals', $rootScope.globals);
     };
 
-    service.ClearCredentials = function() {
-      $rootScope.globals = {};
-      $cookies.remove('globals');
-      // $http.defaults.headers.common.Authorization = 'Basic ';
-    }
-
-    return service;
+    return this;
   }
 
   function Base64() {

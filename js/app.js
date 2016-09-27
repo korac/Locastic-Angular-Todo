@@ -12,16 +12,19 @@
   app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider){
     $routeProvider
         .when('/login', {
+          templateUrl: './js/templates/login.html',
           controller: 'LoginController',
-          templateUrl: './js/templates/login.html'
+          controllerAs: 'login'
         })
         .when('/register', {
+          templateUrl: './js/templates/register.html',
           controller: 'RegisterController',
-          templateUrl: './js/templates/register.html'
+          controllerAs: 'register'
         })
         .when('/:id/dashboard', {
+          templateUrl: './js/templates/dashboard.html',
           controller: 'DashboardController',
-          templateUrl: './js/templates/dashboard.html'
+          controllerAs: 'dashboard'
         })
         .otherwise({ redirectTo: '/login'});
 

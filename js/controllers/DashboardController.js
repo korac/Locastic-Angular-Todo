@@ -10,67 +10,66 @@
   function DashboardController($scope, $routeParams, AuthenticationService, $location, $window, NewListDialog, AddTaskDialog, ListService, TaskService, $localStorage){
     var vm = this;
 
-    $scope.id = $routeParams.id;
-    $scope.sortOptions = [
+    vm.addTaskDialog = addTaskDialog;
+    vm.currentDate = moment().startOf('day').valueOf();
+    vm.editTask = editTask;
+    vm.id = $routeParams.id;
+    vm.logout = logout;
+    vm.openListDialog = openListDialog;
+    vm.orderTasks = orderTasks;
+    vm.remove = remove;
+    vm.removeTask = removeTask;
+    vm.sortOptions = [
       {name: "Date of creation", sort: "createdOn"},
       {name: "List name", sort: "name"}
     ];
-    $scope.sortBy = $scope.sortOptions[0];
+    vm.sortBy = vm.sortOptions[0];
 
     $scope.$watch('sortBy', function(newValue, oldValue){
-      $scope.sortBy = newValue;
+      vm.sortBy = newValue;
     })
 
-    $scope.logout = function(){
-      AuthenticationService.ClearCredentials();
+    $scope.$watch(function() {
+      return angular.toJson($localStorage);
+    }, function() {
+      vm.tasks = _.filter($localStorage.tasks, function(item){return item.userId === vm.id});
+      vm.lists = _.filter($localStorage.lists, function(item){return item.userId === vm.id});
+    });
+
+
+    function addTaskDialog(list_id){
+      AddTaskDialog.show(list_id);
+    }
+
+    function editTask(task){
+      AddTaskDialog.showEdit(task);
+    }
+
+    function logout(){
+      AuthenticationService.clearCredentials();
       var users = JSON.parse($window.localStorage.getItem("users"));
-      var userLoggedOut = _.find(users, function(item){return item.id === parseInt($scope.id)});
+      var userLoggedOut = _.find(users, function(item){return item.id === parseInt(vm.id)});
       userLoggedOut.status = "inactive";
       $window.localStorage.setItem("users", JSON.stringify(users));
 
       $location.path('/login');
     }
 
-    $scope.openListDialog = function(){
+    function openListDialog(){
       NewListDialog.show();
     }
 
-    $scope.addTaskDialog = function(id){
-      AddTaskDialog.show(id);
+    function orderTasks(order){
+      vm.taskOrder = order;
     }
 
-    $scope.remove = function(list){
+    function remove(list){
       ListService.removeList(list);
     }
 
-    $scope.removeTask = function(task){
+    function removeTask(task){
       TaskService.removeTask(task);
     }
-
-    $scope.editTask = function(task){
-      AddTaskDialog.showEdit(task);
-    }
-
-    $scope.orderTasks = function(order){
-      $scope.taskOrder = order;
-    }
-
-    $scope.currentDate = moment().startOf('day').valueOf();
-
-    // $scope.lists = _.find(userLists, function(item){return item.userId === parseInt($scope.id)});
-
-    $scope.$watch(function() {
-      return angular.toJson($localStorage);
-    }, function() {
-      $scope.tasks = _.filter($localStorage.tasks, function(item){return item.userId === $scope.id});
-      $scope.lists = _.filter($localStorage.lists, function(item){return item.userId === $scope.id});
-    });
-
-    // $scope.$watch('lists', function(newLists, oldLists){
-    //   console.log("RADI UPDATE");
-    //   console.log(newLists);
-    //   $localStorage.lists = $scope.lists;
-    // })
 
   }
 })();

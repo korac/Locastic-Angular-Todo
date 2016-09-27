@@ -25,8 +25,7 @@
                 }],
                 templateUrl: './js/templates/addTaskDialog.html',
                 clickOutsideToClose:true,
-                fullscreen: false, //useFullScreen
-                // scope: scope.$new()
+                fullscreen: false
             })
     }
 
@@ -50,19 +49,12 @@
                     userId: task.userId
                   }
 
-                  // $scope.priority = task.priority;
-                  // $scope.taskStatus = task.status;
-                  // // $scope.minDate = new Date();
                   $scope.priorities = ["High", "Medium", "Low"];
-                  // $scope.priority = $scope.priorities[0];
-                  //
                   $scope.taskStatuses = ["Incomplete", "Complete"];
-                  // $scope.taskStatus = $scope.taskStatuses[0];
                 }],
                 templateUrl: './js/templates/editTaskDialog.html',
                 clickOutsideToClose:true,
-                fullscreen: false, //useFullScreen
-                // scope: scope.$new()
+                fullscreen: false
             })
     }
   }

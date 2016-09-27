@@ -5,21 +5,25 @@
       .module('TodoApp')
       .controller('BackgroundController', BackgroundController);
 
-  BackgroundController.$inject = ['$scope', '$rootScope', '$timeout'];
+  BackgroundController.$inject = ['$rootScope', '$timeout'];
 
-  function BackgroundController($scope, $rootScope, $timeout){
+  function BackgroundController($rootScope, $timeout){
+    var vm = this;
 
-    $scope.registrationThanks = false;
+    vm.disbandThanks = disbandThanks;
+    vm.registrationThanks = false;
+    
+    $rootScope.showThanks = showThanks;
 
-    $scope.disbandThanks = function(){
-      $scope.registrationThanks = false;
+    function disbandThanks(){
+      vm.registrationThanks = false;
     }
 
-    $rootScope.showThanks = function(){
-      $scope.registrationThanks = true;
+    function showThanks(){
+      vm.registrationThanks = true;
 
       $timeout(function(){
-        $scope.registrationThanks = false;
+        vm.registrationThanks = false;
       }, 3000);
     }
   }

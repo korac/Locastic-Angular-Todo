@@ -6,6 +6,7 @@
       .service('RegisterService', RegisterService);
 
   function RegisterService($window, $location, $rootScope){
+    this.register = register;
 
     //Default accounts
     var usersArray = [
@@ -50,7 +51,7 @@
 
     $window.localStorage.setItem("users", JSON.stringify(usersArray));
 
-    this.register = function(user){
+    function register(user){
       var userToReg = {
         id: 0,
         name: user.name,
